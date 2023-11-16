@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="container dashboard-container d-flex align-items-center justify-content-center">
+    <div class="col-md-8 text-center">
+        <h2>Admin Dashboard</h2>
+
+        <div class="mt-4">
+            <p>Total Pending Requests: @ViewBag.PendingRequestsCount</p>
+            <p>Total Restaurants: @ViewBag.RestaurantsCount</p>
+            <p>Total Employees: @ViewBag.EmployeesCount</p>
+        </div>
+
+        <div class="mt-4">
+            <h4>Pending Food Requests:</h4>
+            @if (ViewBag.PendingRequests != null && ViewBag.PendingRequests.Count > 0)
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Request ID</th>
+                            <th>Restaurant</th>
+                            <th>Food Type</th>
+                            <th>Quantity</th>
+                            <th>Max Preservation Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var request in ViewBag.PendingRequests)
+                        {
+                            <tr>
+                                <td>@request.Id</td>
+                                <td>@request.RestaurantId</td>
+                                <td>@request.FoodType</td>
+                                <td>@request.Quantity</td>
+                                <td>@request.MaxPreservationTime</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No pending requests.</p>
+            }
+        </div>
+
+        <div class="mt-4">
+            <h3>Actions:</h3>
+            <ul class="list-group">
+                <li class="list-group-item">@Html.ActionLink("Add User", "AddUser")</li>
+                <li class="list-group-item">@Html.ActionLink("Log Out", "LogOut")</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    .dashboard-container {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+        height: 100vh;
+    }
+
+        .dashboard-container table {
+            width: 100%;
+        }
+
+        .dashboard-container th,
+        .dashboard-container td {
+            text-align: center;
+        }
+</style>

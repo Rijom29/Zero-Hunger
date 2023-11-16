@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Accepted Requests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Accepted Requests</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Restaurant ID</th>
+                <th>Collection Employee ID</th>
+                <th>Food Type</th>
+                <th>Quantity</th>
+                <th>Max Preservation Time</th>
+                <th>Collection Status</th>
+                <th>Collection Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model)
+            {
+                <tr>
+                    <td>@request.Id</td>
+                    <td>@request.RestaurantId</td>
+                    <td>@request.CollectionEmployeeId</td>
+                    <td>@request.FoodType</td>
+                    <td>@request.Quantity</td>
+                    <td>@request.MaxPreservationTime</td>
+                    <td>@request.CollectionStatus</td>
+                    <td>@request.CollectionTime</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

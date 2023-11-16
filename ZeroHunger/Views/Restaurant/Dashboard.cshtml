@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="container dashboard-container">
+    <h2>Dashboard</h2>
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <p class="text-danger">@ViewBag.ErrorMessage</p>
+    }
+    else
+    {
+        <div class="mt-4">
+            <p>Pending Requests: @ViewBag.pendingcount</p>
+        </div>
+
+        <h3 class="mt-4">My Requests</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Request ID</th>
+                    <th>Food Type</th>
+                    <th>Quantity</th>
+                    <th>Max Preservation Time</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var request in ViewBag.myRequests)
+                {
+                    <tr>
+                        <td>@request.Id</td>
+                        <td>@request.FoodType</td>
+                        <td>@request.Quantity</td>
+                        <td>@request.MaxPreservationTime</td>
+                        <td>@request.CollectionStatus</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="mt-4">
+            <h4>Actions</h4>
+            <ul class="list-group">
+                <li class="list-group-item"> @Html.ActionLink("Edit Profile", "ProfileEdit", null, new { @class = "btn btn-primary" })</li>
+                <li class="list-group-item"> @Html.ActionLink("Send Food Request", "SendFoodRequest", null, new { @class = "btn btn-success" })</li>
+                <li class="list-group-item"> @Html.ActionLink("Log Out", "LogOut", "Home", null, new { @class = "btn btn-danger" })</li>
+
+            </ul>
+            
+        </div>
+    }
+</div>
+
+<style>
+    .dashboard-container {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px; /* Adjust as needed */
+    }
+
+        .dashboard-container table {
+            width: 100%;
+        }
+
+        .dashboard-container th,
+        .dashboard-container td {
+            text-align: center;
+        }
+</style>

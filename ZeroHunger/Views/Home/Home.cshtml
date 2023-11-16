@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div class="container home-container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center">Welcome to Zero Hunger</h2>
+            <p class="text-center">We are on a mission to eliminate hunger and reduce food waste.</p>
+
+            <div class="text-center">
+                <a href="@Url.Action("Login", "Home")" class="btn btn-primary btn-lg">Login</a>
+                <a href="@Url.Action("SignUp", "Home")" class="btn btn-success btn-lg">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .home-container {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 50px; /* Adjust as needed */
+    }
+</style>

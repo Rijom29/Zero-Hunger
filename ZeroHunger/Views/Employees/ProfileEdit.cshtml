@@ -1,0 +1,40 @@
+﻿@model ZeroHunger.DTOs.EmployeeDTO
+
+@{
+    ViewBag.Title = "Edit Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Edit Profile</h2>
+
+    @using (Html.BeginForm("ProfileEdit", "Employees", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Phone)
+            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email)
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="@Url.Action("Profile", "Employees")" class="btn btn-default">Cancel</a>
+    }
+
+    @if (ViewBag.msg != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @ViewBag.msg
+        </div>
+    }
+</div>

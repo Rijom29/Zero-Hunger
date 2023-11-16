@@ -1,0 +1,70 @@
+﻿@model ZeroHunger.Models.RegistrationClass
+
+@{
+    ViewBag.Title = "Add User";
+}
+
+<div class="container add-user-container">
+    <h2>Add User</h2>
+
+    @using (Html.BeginForm("AddUser", "Admin", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-group mt-3">
+    @Html.LabelFor(model => model.Username)
+    @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+</div>
+
+<div class="form-group mt-3">
+    @Html.LabelFor(model => model.Password)
+    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+</div>
+
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.UserType)
+            @Html.DropDownListFor(model => model.UserType, new SelectList(new[]
+
+            {
+                new { Value = "Employee", Text = "Employee" },
+                new { Value = "Admin", Text = "Admin" },
+                new { Value = "Restaurant", Text = "Restaurant" }
+            }, "Value", "Text"), "Select User Type", new { @class = "form-control" })
+        </div>
+
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.Name)
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.Phone)
+            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group mt-3">
+            @Html.LabelFor(model => model.Email)
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Add User</button>
+    }
+
+    @if (ViewBag.msg != null)
+    {
+        <div class="alert alert-info mt-3">
+            @ViewBag.msg
+        </div>
+    }
+</div>
+
+<style>
+    .add-user-container {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px; /* Adjust as needed */
+    }
+</style>

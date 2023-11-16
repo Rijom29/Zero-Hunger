@@ -1,0 +1,21 @@
+﻿@model ZeroHunger.DTOs.RestaurantDTO
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2>Profile</h2>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <p class="text-danger">@ViewBag.ErrorMessage</p>
+}
+else
+{
+    <div>
+        <p>Name: @Model.Name</p>
+        <p>Location: @Model.Address</p>
+        <p>Contact Number: @Model.Phone</p>
+        <p>Supplier Name: @Model.Name</p>
+    </div>
+}

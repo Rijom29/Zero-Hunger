@@ -1,0 +1,44 @@
+﻿@model ZeroHunger.DTOs.CollectRequestDTO
+
+@{
+    ViewBag.Title = "Send Food Request";
+}
+
+<h2>Send Food Request</h2>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <p class="text-danger">@ViewBag.ErrorMessage</p>
+}
+else
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FoodType)
+            @Html.TextBoxFor(model => model.FoodType, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FoodType, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantity)
+            @Html.TextBoxFor(model => model.Quantity, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaxPreservationTime)
+            @Html.TextBoxFor(model => model.MaxPreservationTime, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MaxPreservationTime, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CollectionEmployeeId)
+            @Html.TextBoxFor(model => model.CollectionEmployeeId, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CollectionEmployeeId, "", new { @class = "text-danger" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send Request</button>
+    }
+}

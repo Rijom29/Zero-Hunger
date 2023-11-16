@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "View Requests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container view-requests-container">
+    <h2>View Requests</h2>
+    @if (ViewBag.pendingcount > 0)
+    {
+        <p class="text-info">You have pending requests. Turn on your status to accept them.</p>
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Restaurant ID</th>
+                <th>Food Type</th>
+                <th>Quantity</th>
+                <th>Max Preservation Time</th>
+                <th>Collection Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var request in Model)
+            {
+                <tr>
+                    <td>@request.Id</td>
+                    <td>@request.RestaurantId</td>
+                    <td>@request.FoodType</td>
+                    <td>@request.Quantity</td>
+                    <td>@request.MaxPreservationTime</td>
+                    <td>@request.CollectionStatus</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .view-requests-container {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px; /* Adjust as needed */
+    }
+
+        .view-requests-container table {
+            width: 100%;
+        }
+
+        .view-requests-container th,
+        .view-requests-container td {
+            text-align: center;
+        }
+</style>

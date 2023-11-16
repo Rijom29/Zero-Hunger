@@ -1,0 +1,71 @@
+﻿@model ZeroHunger.Models.RegistrationClass
+
+@{
+    ViewBag.Title = "SignUp";
+}
+
+<div class="container registration-container d-flex align-items-center justify-content-center">
+    <div class="col-md-4 text-center">
+        <h2>Sign Up</h2>
+
+        @using (Html.BeginForm("SignUp", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group mt-3">
+                @Html.LabelFor(model => model.Username)
+                @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mt-3">
+                @Html.LabelFor(model => model.Password)
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mt-3">
+                @Html.LabelFor(model => model.UserType)
+                @Html.DropDownListFor(model => model.UserType, new SelectList(new[] { "Employee", "Restaurant" }), "Select UserType", new { @class = "form-control" })
+            </div>
+
+            <div class="form-group mt-3">
+                @Html.LabelFor(model => model.Name)
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mt-3">
+                @Html.LabelFor(model => model.Phone)
+                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mt-3">
+                @Html.LabelFor(model => model.Email)
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
+        }
+
+        @if (ViewBag.Msg != null)
+        {
+            <p class="text-danger">@ViewBag.Msg</p>
+        }
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <p class="mt-3">Already have an account? <a href="@Url.Action("Login", "Home")">Login here</a></p>
+    </div>
+</div>
+
+<style>
+    .registration-container {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+        height: 100vh;
+    }
+</style>
